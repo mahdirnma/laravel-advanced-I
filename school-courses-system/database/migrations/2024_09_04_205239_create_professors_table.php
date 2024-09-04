@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('professors', function (Blueprint $table) {
             $table->id();
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('degree');
+            $table->string('field');
+            $table->string('orientation');
+            $table->string('last_education_place');
+            $table->string('degree_year');
+            $table->string('birth_year');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
