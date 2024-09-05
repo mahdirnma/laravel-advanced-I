@@ -13,7 +13,7 @@ class ProfessorController extends Controller
         if (!session()->has('login')) {
             return to_route('login');
         }
-        $professors = Professor::all();
+        $professors = Professor::all()->where('is_active',1);
         return view('admin.professors.index', compact('professors'));
     }
 
@@ -55,32 +55,62 @@ class ProfessorController extends Controller
         }
     }
 
-    public function show(Professor $professor)
+    public function update(Professor $professor)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        return view('admin.professors.update', compact('professor'));
+    }
+    public function edit(UpdateProfessorRequest $request, Professor $professor)
+    {
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $firstname = $request->input('firstname');
+        $lastname = $request->input('lastname');
+        $degree = $request->input('degree');
+        $field= $request->input('field');
+        $orientation = $request->input('orientation');
+        $last_education_place = $request->input('last_education_place');
+        $birth_year = $request->input('birth_year');
+        $degree_year = $request->input('degree_year');
+        $status= $professor->update([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'degree' => $degree,
+            'field' => $field,
+            'orientation' => $orientation,
+            'last_education_place' => $last_education_place,
+            'birth_year' => $birth_year,
+            'degree_year' => $degree_year,
+        ]);
+        if($status){
+            return to_route('professor.index');
+        }else{
+            return to_route('professor.update', $professor);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Professor $professor)
+    protected function delete(Professor $professor)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        return view('admin.professors.delete', compact('professor'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateProfessorRequest $request, Professor $professor)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Professor $professor)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $status = $professor->update([
+            'is_active' => 0
+        ]);
+        if($status){
+            return to_route('professor.index');
+        }else{
+            return to_route('professor.delete', $professor);
+        }
     }
 }
