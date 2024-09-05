@@ -11,7 +11,7 @@ class StoreProfessorRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class StoreProfessorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'degree' => 'required|string',
+            'field'=>'required|string',
+            'orientation'=>'required|string',
+            'last_education_place'=>'required|string',
+            'birth_year'=>'required|numeric',
+            'degree_year'=>'required|numeric',
         ];
     }
 }
