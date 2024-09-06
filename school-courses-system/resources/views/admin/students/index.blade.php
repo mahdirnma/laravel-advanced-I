@@ -29,19 +29,19 @@
                     @foreach($students as $student)
                         <tr>
                             <td class="text-center">
-                                <form action="{{--{{route('student.delete',compact('course'))}}--}}" method="get">
+                                <form action="{{route('student.delete',compact('student'))}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-green-600">delete</button>
                                 </form>
                             </td>
                             <td class="text-center">
-                                <form action="{{--{{route('student.update',compact('course'))}}--}}" method="get">
+                                <form action="{{route('student.update',compact('student'))}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-cyan-600">update</button>
                                 </form>
                             </td>
                             <td class="text-center">
-                                <form action="{{--{{route('course.student.index',compact('course'))}}--}}" method="get">
+                                <form action="{{--{{route('course.student.index',compact('student'))}}--}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-fuchsia-600">show</button>
                                 </form>

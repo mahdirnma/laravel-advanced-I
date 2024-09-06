@@ -53,32 +53,61 @@ class StudentController extends Controller
         }
     }
 
-    public function show(Student $student)
+    public function update(Student $student)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        return view('admin.students.update',compact('student'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Student $student)
+    public function edit(UpdateStudentRequest $request, Student $student)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $firstname = $request->input('firstname');
+        $lastname = $request->input('lastname');
+        $address = $request->input('address');
+        $birth_year = $request->input('birth_year');
+        $father_name = $request->input('father_name');
+        $father_job = $request->input('father_job');
+        $father_phone = $request->input('father_phone');
+        $status=$student->update([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'address' => $address,
+            'birth_year' => $birth_year,
+            'father_name' => $father_name,
+            'father_job' => $father_job,
+            'father_phone' => $father_phone,
+        ]);
+        if ($status) {
+            return to_route('student.index');
+        }else{
+            return to_route('student.update',$student);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateStudentRequest $request, Student $student)
+    public function delete(Student $student)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        return view('admin.students.delete',compact('student'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Student $student)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $status=$student->update([
+            'is_active' => 0,
+        ]);
+        if ($status) {
+            return to_route('student.index');
+        }else{
+            return to_route('student.delete',$student);
+        }
     }
 }

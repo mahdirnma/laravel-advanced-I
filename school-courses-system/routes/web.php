@@ -53,9 +53,9 @@ Route::prefix('/admin')->group(function () {
         Route::get('/student', 'index')->name('student.index');
         Route::get('/student/create','create')->name('student.create');
         Route::post('/student/store','store')->name('student.store');
-//        Route::get('/student/update/{student}','update')->name('student.update');
-//        Route::put('/student/edit/{student}','edit')->name('student.edit');
-//        Route::get('/student/delete/{student}','delete')->name('student.delete');
-//        Route::delete('/student/destroy/{student}','destroy')->name('student.destroy');
+        Route::get('/student/update/{student}','update')->name('student.update');
+        Route::put('/student/edit/{student}','edit')->name('student.edit');
+        Route::get('/student/delete/{student}','delete')->name('student.delete');
+        Route::delete('/student/destroy/{student}','destroy')->name('student.destroy');
     });
 });
