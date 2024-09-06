@@ -65,9 +65,9 @@ Route::prefix('/admin')->group(function () {
         Route::get('/section', 'index')->name('section.index');
         Route::get('/section/create','create')->name('section.create');
         Route::post('/section/store','store')->name('section.store');
-//        Route::get('/section/update/{section}','update')->name('section.update');
-//        Route::put('/section/edit/{section}','edit')->name('section.edit');
+        Route::get('/section/update/{section}','update')->name('section.update');
+        Route::put('/section/edit/{section}','edit')->name('section.edit');
 //        Route::get('/section/delete/{section}','delete')->name('section.delete');
-//        Route::delete('/section/destroy/{section}','destroy')->name('section.destroy');
+        Route::delete('/section/destroy/{section}','destroy')->name('section.destroy');
     });
 });

@@ -51,35 +51,54 @@ class SectionController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Section $section)
+    public function update(Section $section)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $courses = Course::all()->where('is_active', 1);
+        return view('admin.sections.update', compact('section', 'courses'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Section $section)
+    public function edit(UpdateSectionRequest $request, Section $section)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $capacity = $request->input('capacity');
+        $level = $request->input('level');
+        $type = $request->input('type');
+        $course_id = $request->input('course_id');
+        $status = $request->input('status');
+        $position= $section->update([
+            'capacity' => $capacity,
+            'level' => $level,
+            'type' => $type,
+            'course_id' => $course_id,
+            'status' => $status,
+        ]);
+        if ($position) {
+            return to_route('section.index');
+        }else{
+            return to_route('section.update', $section);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateSectionRequest $request, Section $section)
+/*    public function delete(Section $section)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        return view('admin.sections.delete', compact('section'));
+    }*/
     public function destroy(Section $section)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $section->update([
+            'is_active' => 0
+        ]);
+        return to_route('section.index');
     }
 }
