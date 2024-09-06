@@ -38,6 +38,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/course/student/{course}', 'student')->name('course.student.index');
         Route::get('/course/student/create/{course}', 'student_create')->name('course.student.create');
         Route::post('/course/student/store/{course}', 'student_store')->name('course.student.store');
+        Route::delete('/course/student/destroy/{course}{student}', 'student_destroy')->name('course.student.destroy');
 //        Route::get('/professor/create','create')->name('professor.create');
 //        Route::post('/professor/store','store')->name('professor.store');
 //        Route::get('/professor/update/{professor}','update')->name('professor.update');

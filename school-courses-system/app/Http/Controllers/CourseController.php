@@ -44,7 +44,14 @@ class CourseController extends Controller
         $course->students()->attach($student);
         return to_route('course.student.index',$course);
     }
-    public function create()
+    public function student_destroy(Course $course,Student $student){
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $course->students()->detach($student);
+        return to_route('course.student.index',$course);
+    }
+        public function create()
     {
 
     }
