@@ -2,31 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCourseStudentRequest;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Models\Student;
 
 class CourseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $courses = Course::all()->where('is_active',1);
+        return view('admin.courses.index',compact('courses'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function student(Course $course)
+    {
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        return view('admin.courses.students.student_index',compact('course'));
+    }
+
+    public function student_create(Course $course)
+    {
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $students = Student::all()->where('is_active',1);
+        return view('admin.courses.students.student_add',compact('course','students'));
+    }
+    public function student_store(StoreCourseStudentRequest $request,Course $course){
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $student=$request->student;
+        $course->students()->attach($student);
+        return to_route('course.student.index',$course);
+    }
     public function create()
     {
-        //
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreCourseRequest $request)
     {
         //

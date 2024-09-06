@@ -14,7 +14,7 @@
                     <thead>
                     <tr class="h-12 border border-gray-400 border-b-2 border-b-gray-400">
                         <td class="text-center">حذف</td>
-                        <td class="text-center">آپدیت</td>
+                        <td class="text-center">ویرایش</td>
                         <td class="text-center">تعداد دوره ها</td>
                         <td class="text-center">سال دریافت مدرک</td>
                         <td class="text-center">اخرین مکان تحصیل</td>

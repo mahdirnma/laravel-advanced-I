@@ -20,7 +20,8 @@ class Course extends Model
         return $this->belongsTo(Professor::class);
     }
     public function students(){
-        return $this->belongsToMany(Student::class);
+        return $this->belongsToMany(Student::class)
+            ->withTimestamps();
     }
 
     public function sections()

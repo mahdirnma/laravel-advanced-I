@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\UserController;
+use App\Models\Course;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,5 +32,17 @@ Route::prefix('/admin')->group(function () {
         Route::put('/professor/edit/{professor}','edit')->name('professor.edit');
         Route::get('/professor/delete/{professor}','delete')->name('professor.delete');
         Route::delete('/professor/destroy/{professor}','destroy')->name('professor.destroy');
+    });
+    Route::controller(CourseController::class)->group(function () {
+        Route::get('/course', 'index')->name('course.index');
+        Route::get('/course/student/{course}', 'student')->name('course.student.index');
+        Route::get('/course/student/create/{course}', 'student_create')->name('course.student.create');
+        Route::post('/course/student/store/{course}', 'student_store')->name('course.student.store');
+//        Route::get('/professor/create','create')->name('professor.create');
+//        Route::post('/professor/store','store')->name('professor.store');
+//        Route::get('/professor/update/{professor}','update')->name('professor.update');
+//        Route::put('/professor/edit/{professor}','edit')->name('professor.edit');
+//        Route::get('/professor/delete/{professor}','delete')->name('professor.delete');
+//        Route::delete('/professor/destroy/{professor}','destroy')->name('professor.destroy');
     });
 });
