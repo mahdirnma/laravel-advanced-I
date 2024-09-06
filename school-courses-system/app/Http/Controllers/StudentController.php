@@ -8,33 +8,51 @@ use App\Http\Requests\UpdateStudentRequest;
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $students = Student::all()->where('is_active',1);
+        return view('admin.students.index',compact('students'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        return view('admin.students.add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StoreStudentRequest $request)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $firstname = $request->input('firstname');
+        $lastname = $request->input('lastname');
+        $address = $request->input('address');
+        $birth_year = $request->input('birth_year');
+        $father_name = $request->input('father_name');
+        $father_job = $request->input('father_job');
+        $father_phone = $request->input('father_phone');
+        $student=Student::create([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'address' => $address,
+            'birth_year' => $birth_year,
+            'father_name' => $father_name,
+            'father_job' => $father_job,
+            'father_phone' => $father_phone,
+        ]);
+        if ($student) {
+            return to_route('student.index');
+        }else{
+            return to_route('student.create');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Student $student)
     {
         //

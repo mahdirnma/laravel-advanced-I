@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Models\Course;
 use Illuminate\Support\Facades\Route;
@@ -41,12 +42,20 @@ Route::prefix('/admin')->group(function () {
         Route::put('/course/edit/{course}','edit')->name('course.edit');
         Route::get('/course/delete/{course}','delete')->name('course.delete');
         Route::delete('/course/destroy/{course}','destroy')->name('course.destroy');
-
         Route::prefix('/course/student')->group(function () {
             Route::get('/{course}', 'student')->name('course.student.index');
             Route::get('/create/{course}', 'student_create')->name('course.student.create');
             Route::post('/store/{course}', 'student_store')->name('course.student.store');
             Route::delete('/destroy/{course}{student}', 'student_destroy')->name('course.student.destroy');
         });
+    });
+    Route::controller(StudentController::class)->group(function () {
+        Route::get('/student', 'index')->name('student.index');
+        Route::get('/student/create','create')->name('student.create');
+        Route::post('/student/store','store')->name('student.store');
+//        Route::get('/student/update/{student}','update')->name('student.update');
+//        Route::put('/student/edit/{student}','edit')->name('student.edit');
+//        Route::get('/student/delete/{student}','delete')->name('student.delete');
+//        Route::delete('/student/destroy/{student}','destroy')->name('student.destroy');
     });
 });
