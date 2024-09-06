@@ -35,12 +35,15 @@ Route::prefix('/admin')->group(function () {
     });
     Route::controller(CourseController::class)->group(function () {
         Route::get('/course', 'index')->name('course.index');
-        Route::get('/course/student/{course}', 'student')->name('course.student.index');
-        Route::get('/course/student/create/{course}', 'student_create')->name('course.student.create');
-        Route::post('/course/student/store/{course}', 'student_store')->name('course.student.store');
-        Route::delete('/course/student/destroy/{course}{student}', 'student_destroy')->name('course.student.destroy');
-//        Route::get('/professor/create','create')->name('professor.create');
-//        Route::post('/professor/store','store')->name('professor.store');
+        Route::get('/course/create','create')->name('course.create');
+        Route::post('/course/store','store')->name('course.store');
+
+        Route::prefix('/course/student')->group(function () {
+            Route::get('/{course}', 'student')->name('course.student.index');
+            Route::get('/create/{course}', 'student_create')->name('course.student.create');
+            Route::post('/store/{course}', 'student_store')->name('course.student.store');
+            Route::delete('/destroy/{course}{student}', 'student_destroy')->name('course.student.destroy');
+        });
 //        Route::get('/professor/update/{professor}','update')->name('professor.update');
 //        Route::put('/professor/edit/{professor}','edit')->name('professor.edit');
 //        Route::get('/professor/delete/{professor}','delete')->name('professor.delete');

@@ -6,8 +6,8 @@
     <div class="w-full h-[88%] bg-gray-200 flex items-center justify-center">
         <div class="w-[90%] h-5/6 bg-white rounded-xl pt-3 flex flex-col items-center">
             <div class="w-[90%] h-1/5 flex justify-between items-center border-b">
-                <a href="{{--{{route('courses.create')}}--}}" class="px-10 py-3 rounded-xl font-light text-white bg-gray-800">افزودن دوره +</a>
-                <h2 class="text-xl">استاد ها</h2>
+                <a href="{{route('course.create')}}" class="px-10 py-3 rounded-xl font-light text-white bg-gray-800">افزودن دوره +</a>
+                <h2 class="text-xl">دوره ها</h2>
             </div>
             <div class="w-[90%] h-3/5 flex justify-between items-center">
                 <table class="w-full min-h-full border border-gray-400">
@@ -40,7 +40,6 @@
                                     <button type="submit" class="text-cyan-600">update</button>
                                 </form>
                             </td>
-{{--                            <td class="text-center">{{$course->courses->count()}}</td>--}}
                             <td class="text-center">
                                 <form action="{{route('course.student.index',compact('course'))}}" method="get">
                                     @csrf

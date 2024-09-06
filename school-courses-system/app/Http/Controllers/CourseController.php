@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCourseStudentRequest;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Models\Professor;
 use App\Models\Student;
 
 class CourseController extends Controller
@@ -53,17 +54,35 @@ class CourseController extends Controller
     }
         public function create()
     {
-
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $professors=Professor::all()->where('is_active',1);
+        return view('admin.courses.add',compact('professors'));
     }
 
     public function store(StoreCourseRequest $request)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $title=$request->title;
+        $description=$request->description;
+        $start_date=$request->start_date;
+        $end_date=$request->end_date;
+        $professor_id=$request->professor_id;
+        $course=Course::create([
+            'title'=>$title,
+            'description'=>$description,
+            'start_date'=>$start_date,
+            'end_date'=>$end_date,
+            'professor_id'=>$professor_id,
+        ]);
+        if($course){
+            return to_route('course.index');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Course $course)
     {
         //
