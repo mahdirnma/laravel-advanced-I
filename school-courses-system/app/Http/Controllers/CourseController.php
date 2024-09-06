@@ -82,33 +82,58 @@ class CourseController extends Controller
             return to_route('course.index');
         }
     }
-
-    public function show(Course $course)
+    public function update(Course $course)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $professors=Professor::all()->where('is_active',1);
+        return view('admin.courses.update',compact('course','professors'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Course $course)
+    public function edit(UpdateCourseRequest $request, Course $course)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $title=$request->title;
+        $description=$request->description;
+        $start_date=$request->start_date;
+        $end_date=$request->end_date;
+        $professor_id=$request->professor_id;
+        $status=$course->update([
+            'title'=>$title,
+            'description'=>$description,
+            'start_date'=>$start_date,
+            'end_date'=>$end_date,
+            'professor_id'=>$professor_id,
+        ]);
+        if($course){
+            return to_route('course.index');
+        }else{
+            return to_route('course.update',$course);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCourseRequest $request, Course $course)
+    public function delete(Course $course)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        return view('admin.courses.delete',compact('course'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Course $course)
     {
-        //
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        $status=$course->update([
+            'is_active'=>0
+        ]);
+        if($course){
+            return to_route('course.index');
+        }else{
+            return to_route('course.delete',$course);
+        }
     }
 }

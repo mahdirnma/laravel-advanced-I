@@ -29,13 +29,13 @@
                     @foreach($courses as $course)
                         <tr>
                             <td class="text-center">
-                                <form action="{{--{{route('course.delete',compact('course'))}}--}}" method="get">
+                                <form action="{{route('course.delete',compact('course'))}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-green-600">delete</button>
                                 </form>
                             </td>
                             <td class="text-center">
-                                <form action="{{--{{route('course.update',compact('course'))}}--}}" method="get">
+                                <form action="{{route('course.update',compact('course'))}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-cyan-600">update</button>
                                 </form>
@@ -48,7 +48,7 @@
                             </td>
                             <td class="text-center">{{$course->students->count()}}</td>
                             <td class="text-center">{{$course->sections->count()}}</td>
-                            <td class="text-center">{{$course->professor->firstname}}</td>
+                            <td class="text-center">{{$course->professor->firstname}} {{$course->professor->lastname}}</td>
                             <td class="text-center">{{$course->end_date}}</td>
                             <td class="text-center">{{$course->start_date}}</td>
                             <td class="text-center">{{$course->description}}</td>
