@@ -26,4 +26,8 @@ class UserController extends Controller
     public function signin(){
         return view('signin');
     }
+    public function logout(){
+        session()->forget('login');
+        return to_route('login');
+    }
 }

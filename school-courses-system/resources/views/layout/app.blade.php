@@ -23,7 +23,7 @@
                 </ul>
             </nav>
         </div>
-        <a href="{{--{{route('logout')}}--}}" class="text-red-700 font-bold"><- logout</a>
+        <a href="{{route('logout')}}" class="text-red-700 font-bold"><- logout</a>
     </div>
     @yield('content')
 </div>

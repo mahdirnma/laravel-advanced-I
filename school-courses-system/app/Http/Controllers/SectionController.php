@@ -56,6 +56,9 @@ class SectionController extends Controller
         if (!session()->has('login')) {
             return to_route('login');
         }
+        if ($section->status!='initial'){
+            return to_route('section.index');
+        }
         $courses = Course::all()->where('is_active', 1);
         return view('admin.sections.update', compact('section', 'courses'));
     }

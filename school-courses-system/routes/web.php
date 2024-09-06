@@ -25,6 +25,7 @@ Route::get('/login', [UserController::class, 'login'])->name('login.show');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/signin', [UserController::class, 'signin'])->name('signin.show');
 Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::prefix('/admin')->group(function () {
     Route::controller(ProfessorController::class)->group(function () {
         Route::get('/professor', 'index')->name('professor.index');
