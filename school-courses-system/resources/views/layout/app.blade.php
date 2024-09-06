@@ -19,7 +19,7 @@
                     <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('professor.index')}}">اساتید</a></li>
                     <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('course.index')}}">دوره ها</a></li>
                     <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('student.index')}}">دانش آموزان</a></li>
-                    <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{--{{route('tag.index')}}--}}">کلاس ها</a></li>
+                    <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('section.index')}}">کلاس ها</a></li>
                 </ul>
             </nav>
         </div>

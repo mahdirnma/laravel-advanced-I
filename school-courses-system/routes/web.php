@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Models\Course;
@@ -59,5 +60,14 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/student/destroy/{student}','destroy')->name('student.destroy');
 
         Route::get('/student/course/{student}', 'course')->name('student.course.index');
+    });
+    Route::controller(SectionController::class)->group(function () {
+        Route::get('/section', 'index')->name('section.index');
+        Route::get('/section/create','create')->name('section.create');
+        Route::post('/section/store','store')->name('section.store');
+//        Route::get('/section/update/{section}','update')->name('section.update');
+//        Route::put('/section/edit/{section}','edit')->name('section.edit');
+//        Route::get('/section/delete/{section}','delete')->name('section.delete');
+//        Route::delete('/section/destroy/{section}','destroy')->name('section.destroy');
     });
 });
