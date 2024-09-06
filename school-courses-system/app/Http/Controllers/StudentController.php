@@ -110,4 +110,12 @@ class StudentController extends Controller
             return to_route('student.delete',$student);
         }
     }
+
+    public function course(Student $student)
+    {
+        if (!session()->has('login')) {
+            return to_route('login');
+        }
+        return view('admin.students.courses.index',compact('student'));
+    }
 }

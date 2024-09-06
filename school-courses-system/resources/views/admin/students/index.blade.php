@@ -41,7 +41,7 @@
                                 </form>
                             </td>
                             <td class="text-center">
-                                <form action="{{--{{route('course.student.index',compact('student'))}}--}}" method="get">
+                                <form action="{{route('student.course.index',compact('student'))}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-fuchsia-600">show</button>
                                 </form>

@@ -57,5 +57,7 @@ Route::prefix('/admin')->group(function () {
         Route::put('/student/edit/{student}','edit')->name('student.edit');
         Route::get('/student/delete/{student}','delete')->name('student.delete');
         Route::delete('/student/destroy/{student}','destroy')->name('student.destroy');
+
+        Route::get('/student/course/{student}', 'course')->name('student.course.index');
     });
 });
