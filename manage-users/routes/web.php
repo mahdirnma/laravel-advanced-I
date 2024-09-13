@@ -34,8 +34,8 @@ Route::middleware(['authh'])->group(function () {
         });
         Route::controller(ProductController::class)->group(function () {
             Route::get('/products','index')->name('products.index');
-//            Route::get('/products/create','create')->name('product.create');
-//            Route::post('/products/store','store')->name('product.store');
+            Route::get('/products/create','create')->name('product.create');
+            Route::post('/products/store','store')->name('product.store');
 //            Route::get('/products/update/{product}','update')->name('product.update');
 //            Route::put('/products/edit/{product}','edit')->name('product.edit');
 //            Route::get('/products/delete/{product}','delete')->name('product.delete');
