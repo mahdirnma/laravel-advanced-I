@@ -23,10 +23,25 @@ class UserController extends Controller
         return view('admin.user.index',compact('users'));
     }
     public function create(){
-        $categories=Category::where('is_active',1)->get();
-        return view('admin.user.add',compact('categories'));
+        return view('admin.user.add');
     }
     public function store(StoreUserRequest $request){
-
+        $name=$request->input('name');
+        $age=$request->input('age');
+        $gender=$request->input('gender');
+        $role=$request->input('role');
+        $username=$request->input('username');
+        $password=$request->input('password');
+        $user=User::create([
+            'name'=>$name,
+            'age'=>$age,
+            'gender'=>$gender,
+            'role'=>$role,
+            'username'=>$username,
+            'password'=>$password
+        ]);
+        if($user){
+            return to_route('users.index');
+        }
     }
 }

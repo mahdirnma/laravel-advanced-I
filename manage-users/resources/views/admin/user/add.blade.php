@@ -52,17 +52,6 @@
                     </div>
                     <div class="w-1/2 h-full flex flex-col items-end pr-20">
                         <div class="w-5/6 h-auto flex flex-row-reverse justify-between pt-4 mb-6">
-                            <label for="category_id" class="font-semibold ml-5">: category</label>
-                            <select name="category_id" id="category_id" class="w-2/5 h-8 border border-gray-400 rounded outline-0 pl-3">
-                                @foreach($categories as $category)
-                                    <option value={{$category->id}}>{{$category->title}}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('category_id'))
-                                <p class="text-red-700">{{$errors->first('category_id')}}</p>
-                            @endif
-                        </div>
-                        <div class="w-5/6 h-auto flex flex-row-reverse justify-between pt-4 mb-6">
                             <label for="username" class="font-semibold ml-5">: username</label>
                             <input type="text" name="username" id="username" class="w-2/5 h-8 rounded outline-0 p-2 border border-gray-400">
                             @if($errors->has('username'))
