@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,15 @@ Route::middleware(['authh'])->group(function () {
             Route::put('/products/edit/{product}','edit')->name('product.edit');
             Route::get('/products/delete/{product}','delete')->name('product.delete');
             Route::delete('/products/destroy/{product}','destroy')->name('product.destroy');
+        });
+        Route::controller(CategoryController::class)->group(function () {
+            Route::get('/categories','index')->name('categories.index');
+//            Route::get('/categories/create','create')->name('category.create');
+//            Route::post('/categories/store','store')->name('category.store');
+//            Route::get('/categories/update/{category}','update')->name('category.update');
+//            Route::put('/categories/edit/{category}','edit')->name('category.edit');
+//            Route::get('/categories/delete/{category}','delete')->name('category.delete');
+//            Route::delete('/categories/destroy/{category}','destroy')->name('category.destroy');
         });
     });
 });
