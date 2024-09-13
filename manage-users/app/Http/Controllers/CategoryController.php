@@ -17,29 +17,24 @@ class CategoryController extends Controller
         return view('admin.category.index', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.category.add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $title = $request->input('title');
+        $description = $request->input('description');
+        $category = Category::create([
+            'title' => $title,
+            'description' => $description
+        ]);
+        if ($category) {
+            return to_route('categories.index');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
