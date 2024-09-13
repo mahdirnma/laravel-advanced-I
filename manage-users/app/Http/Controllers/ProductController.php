@@ -8,33 +8,20 @@ use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $products = Product::where('is_active',1)->get();
+        return view('admin.product.index',compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreProductRequest $request)
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Product $product)
     {
         //
