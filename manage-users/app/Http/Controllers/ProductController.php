@@ -43,30 +43,31 @@ class ProductController extends Controller
             return to_route('product.create');
         }
     }
-    public function show(Product $product)
+    public function update(Product $product)
     {
-        //
+        $categories = Category::where('is_active',1)->get();
+        $tags = Tag::where('is_active',1)->get();
+        return view('admin.product.update',compact('categories','tags','product'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
+    public function edit(UpdateProductRequest $request, Product $product)
     {
-        //
+        $title=$request->input('title');
+        $description=$request->input('description');
+        $price=$request->input('price');
+        $category_id=$request->input('category_id');
+        $status=$product->update([
+            'title'=>$title,
+            'description'=>$description,
+            'price'=>$price,
+            'category_id'=>$category_id,
+        ]);
+        if($status){
+            return to_route('products.index');
+        }else{
+            return to_route('product.update');
+        }
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateProductRequest $request, Product $product)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Product $product)
     {
         //
