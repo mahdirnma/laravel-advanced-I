@@ -68,4 +68,18 @@ class UserController extends Controller
             return to_route('user.update',$user);
         }
     }
+    public function delete(User $user){
+        return view('admin.user.delete',compact('user'));
+    }
+    public function destroy(User $user){
+        $status=$user->update([
+            'is_active'=>0
+        ]);
+        if($status){
+            return to_route('users.index');
+
+        }else{
+            return to_route('user.delete',$user);
+        }
+    }
 }

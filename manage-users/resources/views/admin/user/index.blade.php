@@ -26,9 +26,8 @@
                     @foreach($users as $user)
                         <tr>
                             <td class="text-center">
-                                <form action="{{--{{route('section.destroy',compact('section'))}}--}}" method="post">
+                                <form action="{{route('user.delete',compact('user'))}}" method="get">
                                     @csrf
-                                    @method('delete')
                                     <button type="submit" class="text-green-600">delete</button>
                                 </form>
                             </td>
