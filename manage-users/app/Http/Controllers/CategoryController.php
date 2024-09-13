@@ -36,25 +36,26 @@ class CategoryController extends Controller
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Category $category)
+    public function update(Category $category)
     {
-        //
+        return view('admin.category.update', compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function edit(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $title = $request->input('title');
+        $description = $request->input('description');
+        $status = $category->update([
+            'title' => $title,
+            'description' => $description
+        ]);
+        if ($status) {
+            return to_route('categories.index');
+        }else{
+            return to_route('category.add');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Category $category)
     {
         //

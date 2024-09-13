@@ -46,8 +46,8 @@ Route::middleware(['authh'])->group(function () {
             Route::get('/categories','index')->name('categories.index');
             Route::get('/categories/create','create')->name('category.create');
             Route::post('/categories/store','store')->name('category.store');
-//            Route::get('/categories/update/{category}','update')->name('category.update');
-//            Route::put('/categories/edit/{category}','edit')->name('category.edit');
+            Route::get('/categories/update/{category}','update')->name('category.update');
+            Route::put('/categories/edit/{category}','edit')->name('category.edit');
 //            Route::get('/categories/delete/{category}','delete')->name('category.delete');
 //            Route::delete('/categories/destroy/{category}','destroy')->name('category.destroy');
         });

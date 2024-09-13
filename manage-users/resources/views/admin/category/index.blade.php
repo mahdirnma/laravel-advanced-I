@@ -29,7 +29,7 @@
                                 </form>
                             </td>
                             <td class="text-center">
-                                <form action="{{--{{route('category.update',compact('category'))}}--}}" method="get">
+                                <form action="{{route('category.update',compact('category'))}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-cyan-600">update</button>
                                 </form>
