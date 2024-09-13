@@ -16,12 +16,20 @@ class TagController extends Controller
 
     public function create()
     {
-
+        return view('admin.tag.add');
     }
 
     public function store(StoreTagRequest $request)
     {
-        //
+        $title=$request->input('title');
+        $tag=Tag::create([
+            'title'=>$title,
+        ]);
+        if($tag){
+            return to_route('tags.index');
+        }else{
+            return to_route('tag.create');
+        }
     }
 
     /**
