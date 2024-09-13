@@ -15,6 +15,9 @@ class Authh
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (!session()->has('role')) {
+            return to_route('login');
+        }
         return $next($request);
     }
 }
