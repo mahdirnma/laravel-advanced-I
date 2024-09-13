@@ -63,3 +63,8 @@ Route::middleware(['authh'])->group(function () {
         });
     });
 });
+Route::get('/home', [UserController::class, 'home'])->name('home.show');
+Route::get('/home/profile/{id}', [UserController::class, 'home_profile'])->name('home.profile');
+Route::get('/buy/panel/{product}', [UserController::class, 'buy_panel'])->name('buy.panel');
+Route::get('/buy/show', [UserController::class, 'buy_panel_show'])->name('buy.panel.show');
+
