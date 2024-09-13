@@ -19,10 +19,17 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'age',
+        'gender',
+        'role',
+        'username',
         'password',
+        'category_id',
+        'is_active',
     ];
-
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
