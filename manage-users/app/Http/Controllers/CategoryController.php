@@ -56,8 +56,19 @@ class CategoryController extends Controller
         }
     }
 
+    public function delete(Category $category)
+    {
+        return view('admin.category.delete', compact('category'));
+    }
     public function destroy(Category $category)
     {
-        //
+        $status=$category->update([
+            'is_active' => 0
+        ]);
+        if ($status) {
+            return to_route('categories.index');
+        }else{
+            return to_route('categories.delete');
+        }
     }
 }
