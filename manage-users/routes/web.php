@@ -38,8 +38,8 @@ Route::middleware(['authh'])->group(function () {
             Route::post('/products/store','store')->name('product.store');
             Route::get('/products/update/{product}','update')->name('product.update');
             Route::put('/products/edit/{product}','edit')->name('product.edit');
-//            Route::get('/products/delete/{product}','delete')->name('product.delete');
-//            Route::delete('/products/destroy/{product}','destroy')->name('product.destroy');
+            Route::get('/products/delete/{product}','delete')->name('product.delete');
+            Route::delete('/products/destroy/{product}','destroy')->name('product.destroy');
         });
     });
 });

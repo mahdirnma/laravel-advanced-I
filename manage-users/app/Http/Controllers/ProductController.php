@@ -68,8 +68,18 @@ class ProductController extends Controller
             return to_route('product.update');
         }
     }
+
+    public function delete(Product $product)
+    {
+        return view('admin.product.delete',compact('product'));
+    }
     public function destroy(Product $product)
     {
-        //
+        $status=$product->update([
+            'is_active'=>0
+        ]);
+        if($status){
+            return to_route('products.index');
+        }
     }
 }
