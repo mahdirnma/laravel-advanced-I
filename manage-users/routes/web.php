@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,15 @@ Route::middleware(['authh'])->group(function () {
             Route::put('/categories/edit/{category}','edit')->name('category.edit');
             Route::get('/categories/delete/{category}','delete')->name('category.delete');
             Route::delete('/categories/destroy/{category}','destroy')->name('category.destroy');
+        });
+        Route::controller(TagController::class)->group(function () {
+            Route::get('/tags','index')->name('tags.index');
+//            Route::get('/tags/create','create')->name('category.create');
+//            Route::post('/tags/store','store')->name('tag.store');
+//            Route::get('/tags/update/{tag}','update')->name('tag.update');
+//            Route::put('/tags/edit/{tag}','edit')->name('tag.edit');
+//            Route::get('/tags/delete/{tag}','delete')->name('tag.delete');
+//            Route::delete('/tags/destroy/{tag}','destroy')->name('tag.destroy');
         });
     });
 });

@@ -8,25 +8,17 @@ use App\Http\Requests\UpdateTagRequest;
 
 class TagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $tags = Tag::where('is_active', 1)->get();
+        return view('admin.tag.index', compact('tags'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreTagRequest $request)
     {
         //

@@ -19,7 +19,7 @@
                     <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('users.index')}}">users</a></li>
                     <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('products.index')}}">products</a></li>
                     <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('categories.index')}}">categories</a></li>
-                    <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{--{{route('course.index')}}--}}">tags</a></li>
+                    <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('tags.index')}}">tags</a></li>
                 </ul>
             </nav>
         </div>
