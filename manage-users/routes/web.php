@@ -24,6 +24,8 @@ Route::middleware(['authh'])->group(function () {
             Route::get('/users', [UserController::class, 'user_index'])->name('users.index');
             Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
             Route::post('/users/store', [UserController::class, 'store'])->name('user.store');
+            Route::get('/users/update/{user}', [UserController::class, 'update'])->name('user.update');
+            Route::put('/users/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
         });
     });
 });

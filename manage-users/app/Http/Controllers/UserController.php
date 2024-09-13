@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -42,6 +43,29 @@ class UserController extends Controller
         ]);
         if($user){
             return to_route('users.index');
+        }
+    }
+    public function update(User $user){
+        return view('admin.user.update',compact('user'));
+    }
+    public function edit(User $user,UpdateUserRequest $request){
+        $name=$request->input('name');
+        $age=$request->input('age');
+        $gender=$request->input('gender');
+        $role=$request->input('role');
+        $username=$request->input('username');
+        $status=$user->update([
+            'name'=>$name,
+            'age'=>$age,
+            'gender'=>$gender,
+            'role'=>$role,
+            'username'=>$username,
+        ]);
+        if($status){
+            return to_route('users.index');
+
+        }else{
+            return to_route('user.update',$user);
         }
     }
 }
