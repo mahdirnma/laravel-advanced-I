@@ -56,10 +56,10 @@ Route::middleware(['authh'])->group(function () {
             Route::get('/tags','index')->name('tags.index');
             Route::get('/tags/create','create')->name('tag.create');
             Route::post('/tags/store','store')->name('tag.store');
-//            Route::get('/tags/update/{tag}','update')->name('tag.update');
-//            Route::put('/tags/edit/{tag}','edit')->name('tag.edit');
-//            Route::get('/tags/delete/{tag}','delete')->name('tag.delete');
-//            Route::delete('/tags/destroy/{tag}','destroy')->name('tag.destroy');
+            Route::get('/tags/update/{tag}','update')->name('tag.update');
+            Route::put('/tags/edit/{tag}','edit')->name('tag.edit');
+            Route::get('/tags/delete/{tag}','delete')->name('tag.delete');
+            Route::delete('/tags/destroy/{tag}','destroy')->name('tag.destroy');
         });
     });
 });

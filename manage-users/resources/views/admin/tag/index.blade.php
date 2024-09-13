@@ -22,13 +22,13 @@
                     @foreach($tags as $tag)
                         <tr>
                             <td class="text-center">
-                                <form action="{{--{{route('tag.delete',compact('tag'))}}--}}" method="get">
+                                <form action="{{route('tag.delete',compact('tag'))}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-green-600">delete</button>
                                 </form>
                             </td>
                             <td class="text-center">
-                                <form action="{{--{{route('tag.update',compact('tag'))}}--}}" method="get">
+                                <form action="{{route('tag.update',compact('tag'))}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-cyan-600">update</button>
                                 </form>

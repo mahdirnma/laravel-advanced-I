@@ -31,36 +31,39 @@ class TagController extends Controller
             return to_route('tag.create');
         }
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Tag $tag)
+    public function update(Tag $tag)
     {
-        //
+        return view('admin.tag.update', compact('tag'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Tag $tag)
+
+    public function edit(UpdateTagRequest $request, Tag $tag)
     {
-        //
+        $title=$request->input('title');
+        $status=$tag->update([
+            'title'=>$title,
+        ]);
+        if($status){
+            return to_route('tags.index');
+
+        }else{
+            return to_route('tag.update');
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateTagRequest $request, Tag $tag)
+    public function delete(Tag $tag)
     {
-        //
+        return view('admin.tag.delete', compact('tag'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Tag $tag)
     {
-        //
+        $status=$tag->update([
+            'is_active'=>0,
+        ]);
+        if($status){
+            return to_route('tags.index');
+        }else{
+            return to_route('tag.delete');
+        }
     }
 }
