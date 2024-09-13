@@ -2,24 +2,28 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CategorySeeder extends Seeder
+class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Category::create([
-            'title' => 'camera',
+        Product::create([
+            'title' => 'A15',
             'description' => 'lorem ipsum dolor sit amet',
+            'price' => 1500000,
+            'category_id' => 2,
         ]);
-        Category::create([
-            'title' => 'mobile',
+        Product::create([
+            'title' => 'canon 2000d',
             'description' => 'lorem ipsum dolor sit amet2',
+            'price' => 2000000,
+            'category_id' => 1,
         ]);
 
     }

@@ -20,7 +20,6 @@ class UserSeeder extends Seeder
             'role' => '2',
             'username' => 'alii',
             'password' => '123',
-            'category_id' => '1',
         ]);
         User::create([
             'name' => 'mahdi rahnama',
@@ -29,7 +28,6 @@ class UserSeeder extends Seeder
             'role' => '1',
             'username' => 'Mahdi',
             'password' => '123',
-            'category_id' => '1',
 
         ]);
         User::create([
@@ -39,7 +37,6 @@ class UserSeeder extends Seeder
             'role' => '3',
             'username' => 'rezaa',
             'password' => '456',
-            'category_id' => '2',
         ]);
         User::create([
             'name' => 'sara abbasi',
@@ -48,7 +45,6 @@ class UserSeeder extends Seeder
             'role' => '4',
             'username' => 'saraa',
             'password' => '456',
-            'category_id' => '2',
         ]);
 
     }

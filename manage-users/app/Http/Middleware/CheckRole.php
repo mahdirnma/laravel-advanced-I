@@ -15,6 +15,10 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $role=session()->get('role');
+        if($role!='1' && $role!='2'){
+            return to_route('index');
+        }
         return $next($request);
     }
 }

@@ -19,5 +19,11 @@ Route::get('/login', [UserController::class, 'login'])->name('login.show');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::middleware(['authh'])->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('index');
-    Route::get('/admin/users', [UserController::class, 'user_index'])->name('users.index');
+    Route::prefix('/admin')->group(function () {
+        Route::middleware(['check_role'])->group(function () {
+            Route::get('/users', [UserController::class, 'user_index'])->name('users.index');
+            Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
+            Route::post('/users/store', [UserController::class, 'store'])->name('user.store');
+        });
+    });
 });
