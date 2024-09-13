@@ -14,58 +14,37 @@ class CourseController extends Controller
 
     public function index()
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $courses = Course::all()->where('is_active',1);
         return view('admin.courses.index',compact('courses'));
     }
 
     public function student(Course $course)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         return view('admin.courses.students.student_index',compact('course'));
     }
 
     public function student_create(Course $course)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $students = Student::all()->where('is_active',1);
         return view('admin.courses.students.student_add',compact('course','students'));
     }
     public function student_store(StoreCourseStudentRequest $request,Course $course){
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $student=$request->student;
         $course->students()->attach($student);
         return to_route('course.student.index',$course);
     }
     public function student_destroy(Course $course,Student $student){
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $course->students()->detach($student);
         return to_route('course.student.index',$course);
     }
         public function create()
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $professors=Professor::all()->where('is_active',1);
         return view('admin.courses.add',compact('professors'));
     }
 
     public function store(StoreCourseRequest $request)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $title=$request->title;
         $description=$request->description;
         $start_date=$request->start_date;
@@ -84,18 +63,12 @@ class CourseController extends Controller
     }
     public function update(Course $course)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $professors=Professor::all()->where('is_active',1);
         return view('admin.courses.update',compact('course','professors'));
     }
 
     public function edit(UpdateCourseRequest $request, Course $course)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $title=$request->title;
         $description=$request->description;
         $start_date=$request->start_date;
@@ -117,16 +90,10 @@ class CourseController extends Controller
 
     public function delete(Course $course)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         return view('admin.courses.delete',compact('course'));
     }
     public function destroy(Course $course)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $status=$course->update([
             'is_active'=>0
         ]);

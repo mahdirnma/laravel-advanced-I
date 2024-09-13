@@ -11,27 +11,18 @@ class SectionController extends Controller
 {
     public function index()
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $sections = Section::all()->where('is_active', 1);
         return view('admin.sections.index', compact('sections'));
     }
 
     public function create()
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $courses = Course::all()->where('is_active', 1);
         return view('admin.sections.add', compact('courses'));
     }
 
     public function store(StoreSectionRequest $request)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $capacity = $request->input('capacity');
         $level = $request->input('level');
         $type = $request->input('type');
@@ -53,9 +44,6 @@ class SectionController extends Controller
 
     public function update(Section $section)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         if ($section->status!='initial'){
             return to_route('section.index');
         }
@@ -65,9 +53,6 @@ class SectionController extends Controller
 
     public function edit(UpdateSectionRequest $request, Section $section)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $capacity = $request->input('capacity');
         $level = $request->input('level');
         $type = $request->input('type');
@@ -96,9 +81,6 @@ class SectionController extends Controller
     }*/
     public function destroy(Section $section)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $section->update([
             'is_active' => 0
         ]);

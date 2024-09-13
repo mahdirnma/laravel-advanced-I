@@ -10,26 +10,17 @@ class StudentController extends Controller
 {
     public function index()
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $students = Student::all()->where('is_active',1);
         return view('admin.students.index',compact('students'));
     }
     public function create()
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         return view('admin.students.add');
     }
 
 
     public function store(StoreStudentRequest $request)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $firstname = $request->input('firstname');
         $lastname = $request->input('lastname');
         $address = $request->input('address');
@@ -55,17 +46,11 @@ class StudentController extends Controller
 
     public function update(Student $student)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         return view('admin.students.update',compact('student'));
     }
 
     public function edit(UpdateStudentRequest $request, Student $student)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $firstname = $request->input('firstname');
         $lastname = $request->input('lastname');
         $address = $request->input('address');
@@ -91,16 +76,10 @@ class StudentController extends Controller
 
     public function delete(Student $student)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         return view('admin.students.delete',compact('student'));
     }
     public function destroy(Student $student)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $status=$student->update([
             'is_active' => 0,
         ]);
@@ -113,9 +92,6 @@ class StudentController extends Controller
 
     public function course(Student $student)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         return view('admin.students.courses.index',compact('student'));
     }
 }

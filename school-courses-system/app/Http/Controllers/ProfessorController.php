@@ -10,26 +10,17 @@ class ProfessorController extends Controller
 {
     public function index()
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $professors = Professor::all()->where('is_active',1);
         return view('admin.professors.index', compact('professors'));
     }
 
     public function create()
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         return view('admin.professors.add');
     }
 
     public function store(StoreProfessorRequest $request)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $firstname = $request->input('firstname');
         $lastname = $request->input('lastname');
         $degree = $request->input('degree');
@@ -57,16 +48,10 @@ class ProfessorController extends Controller
 
     public function update(Professor $professor)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         return view('admin.professors.update', compact('professor'));
     }
     public function edit(UpdateProfessorRequest $request, Professor $professor)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $firstname = $request->input('firstname');
         $lastname = $request->input('lastname');
         $degree = $request->input('degree');
@@ -94,16 +79,10 @@ class ProfessorController extends Controller
 
     protected function delete(Professor $professor)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         return view('admin.professors.delete', compact('professor'));
     }
     public function destroy(Professor $professor)
     {
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $status = $professor->update([
             'is_active' => 0
         ]);

@@ -11,9 +11,6 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index(){
-        if (!session()->has('login')) {
-            return to_route('login');
-        }
         $professors = Professor::all()->where('is_active',1)->count();
         $courses = Course::all()->where('is_active',1)->count();
         $students = Student::all()->where('is_active',1)->count();
