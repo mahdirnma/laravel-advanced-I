@@ -22,9 +22,7 @@
                         </div>
                         <div class="w-5/6 h-auto flex flex-row-reverse justify-between pt-4 mb-6">
                             <label for="description" class="font-semibold ml-5">: description</label>
-                            <textarea name="description" id="description" cols="25" rows="3" class="rounded outline-0 p-2 border border-gray-400">
-                                {{$category->description}}
-                            </textarea>
+                            <textarea name="description" id="description" cols="25" rows="3" class="rounded outline-0 p-2 border border-gray-400">{{$category->description}}</textarea>
                             @if($errors->has('description'))
                                 <p class="text-red-700">{{$errors->first('description')}}</p>
                             @endif

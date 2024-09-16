@@ -21,18 +21,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [UserController::class, 'login'])->name('login.show');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::middleware(['authh'])->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('index');
+    Route::get('/admin', [UserController::class, 'index'])->name('index');
     Route::prefix('/admin')->group(function () {
-        Route::controller(UserController::class)->group(function () {
-            Route::middleware(['check_role'])->group(function () {
-                Route::get('/users','user_index')->name('users.index');
-                Route::get('/users/create','create')->name('user.create');
-                Route::post('/users/store','store')->name('user.store');
-                Route::get('/users/update/{user}','update')->name('user.update');
-                Route::put('/users/edit/{user}','edit')->name('user.edit');
-                Route::get('/users/delete/{user}','delete')->name('user.delete');
-                Route::delete('/users/destroy/{user}','destroy')->name('user.destroy');
-            });
+        Route::controller(UserController::class)->middleware(['check_role'])->group(function () {
+            Route::get('/users','user_index')->name('users.index');
+            Route::get('/users/create','create')->name('user.create');
+            Route::post('/users/store','store')->name('user.store');
+            Route::get('/users/update/{user}','update')->name('user.update');
+            Route::put('/users/edit/{user}','edit')->name('user.edit');
+            Route::get('/users/delete/{user}','delete')->name('user.delete');
+            Route::delete('/users/destroy/{user}','destroy')->name('user.destroy');
         });
         Route::controller(ProductController::class)->group(function () {
             Route::get('/products','index')->name('products.index');
@@ -63,7 +61,7 @@ Route::middleware(['authh'])->group(function () {
         });
     });
 });
-Route::get('/home', [UserController::class, 'home'])->name('home.show');
+Route::get('/', [UserController::class, 'home'])->name('home.show');
 Route::get('/home/profile/{id}', [UserController::class, 'home_profile'])->name('home.profile');
 Route::get('/buy/panel/{product}', [UserController::class, 'buy_panel'])->name('buy.panel');
 Route::get('/buy/show', [UserController::class, 'buy_panel_show'])->name('buy.panel.show');
