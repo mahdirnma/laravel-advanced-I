@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
@@ -61,8 +62,10 @@ Route::middleware(['authh'])->group(function () {
         });
     });
 });
-Route::get('/', [UserController::class, 'home'])->name('home.show');
-Route::get('/home/profile/{id}', [UserController::class, 'home_profile'])->name('home.profile');
-Route::get('/buy/panel/{product}', [UserController::class, 'buy_panel'])->name('buy.panel');
-Route::get('/buy/show', [UserController::class, 'buy_panel_show'])->name('buy.panel.show');
+Route::controller(OrderController::class)->group(function () {
+    Route::get('/', 'home')->name('home.show');
+    Route::get('/home/profile/{id}', 'home_profile')->name('home.profile');
+    Route::get('/buy/panel/{product}','buy_panel')->name('buy.panel');
+    Route::get('/buy/show', 'buy_panel_show')->name('buy.panel.show');
+});
 
