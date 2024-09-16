@@ -48,18 +48,20 @@
                                 <p class="text-red-700">{{$errors->first('role')}}</p>
                             @endif
                         </div>
-{{--
                         <div class="w-5/6 h-auto flex flex-row-reverse pt-4 mb-6">
                             <label for="" class="font-semibold ml-10">: tags</label>
                             @foreach($tags as $tag)
+                                <input type="checkbox" name="tags[]" id="{{$tag->title}}" value="{{$tag->id}}"
+                                       @foreach($product->tags as $row)
+                                           {{$row->id==$tag->id?'checked':''}}
+                                       @endforeach
+                                        class="ml-5 mr-1 cursor-pointer">
                                 <label for="{{$tag->title}}" class="font-semibold cursor-pointer select-none">{{$tag->title}}</label>
-                                <input type="checkbox" name="tags[]" id="{{$tag->title}}" value="{{$tag->id}}" class="ml-5 mr-1 cursor-pointer">
                             @endforeach
                             @if($errors->has('tag'))
                                 <p class="text-red-700">{{$errors->first('tag')}}</p>
                             @endif
                         </div>
---}}
                     </div>
                 </form>
             </div>

@@ -56,12 +56,14 @@ class ProductController extends Controller
         $description=$request->input('description');
         $price=$request->input('price');
         $category_id=$request->input('category_id');
+        $tags_id=$request->input('tags');
         $status=$product->update([
             'title'=>$title,
             'description'=>$description,
             'price'=>$price,
             'category_id'=>$category_id,
         ]);
+        $product->tags()->sync($tags_id);
         if($status){
             return to_route('products.index');
         }else{

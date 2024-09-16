@@ -16,7 +16,9 @@
             <nav>
                 <ul class="flex flex-row-reverse">
                     <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('index')}}">dashboard</a></li>
-                    <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('users.index')}}">users</a></li>
+                    @if(session()->get('role')==1 || session()->get('role')==2)
+                        <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('users.index')}}">users</a></li>
+                    @endif
                     <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('products.index')}}">products</a></li>
                     <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('categories.index')}}">categories</a></li>
                     <li class="w-44 h-full flex justify-center items-center font-mono text-balance"><a href="{{route('tags.index')}}">tags</a></li>
