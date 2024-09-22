@@ -10,8 +10,15 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::where('is_active', 1)->get();
-        return view('admin.tag.index', compact('tags'));
+        $tags_count=Tag::all()->count();
+        if($tags_count > 2){
+            $tags=Tag::where('is_active',1)->paginate(2);
+            $status=true;
+        }else{
+            $tags=Tag::where('is_active',1)->get();
+            $status=false;
+        }
+        return view('admin.tag.index', compact('tags','status'));
     }
 
     public function create()

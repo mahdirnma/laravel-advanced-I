@@ -39,5 +39,8 @@
                     </tbody>
                 </table>
             </div>
+            @if($status)
+                <div class="mt-5">{{$tags->links()}}</div>
+            @endif
         </div>
 @endsection
