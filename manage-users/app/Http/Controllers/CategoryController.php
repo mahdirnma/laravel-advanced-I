@@ -13,8 +13,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('is_active', 1)->get();
-        return view('admin.category.index', compact('categories'));
+        $categories_count=Category::all()->count();
+        if($categories_count > 2){
+            $categories=Category::where('is_active',1)->paginate(2);
+            $status=true;
+        }else{
+            $categories=Category::where('is_active',1)->get();
+            $status=false;
+        }
+        return view('admin.category.index', compact('categories',$status));
     }
 
     public function create()

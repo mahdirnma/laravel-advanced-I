@@ -12,8 +12,15 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::where('is_active',1)->get();
-        return view('admin.product.index',compact('products'));
+        $products_count=Product::all()->count();
+        if($products_count > 2){
+            $products=Product::where('is_active',1)->paginate(2);
+            $status=true;
+        }else{
+            $products=Product::where('is_active',1)->get();
+            $status=false;
+        }
+        return view('admin.product.index',compact('products','status'));
     }
 
     public function create()
