@@ -21,8 +21,15 @@ class UserController extends Controller
         return view('login');
     }
     public function user_index(){
-        $users=User::where('is_active',1)->get();
-        return view('admin.user.index',compact('users'));
+        $users_count=User::all()->count();
+        if($users_count > 2){
+            $users=User::where('is_active',1)->paginate(2);
+            $status=true;
+        }else{
+            $users=User::where('is_active',1)->get();
+            $status=false;
+        }
+        return view('admin.user.index',compact('users','status'));
     }
     public function create(){
         return view('admin.user.add');

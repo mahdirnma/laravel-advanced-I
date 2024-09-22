@@ -47,5 +47,8 @@
                     </tbody>
                 </table>
             </div>
+            @if($status)
+                <div class="mt-5">{{$users->links()}}</div>
+            @endif
         </div>
 @endsection

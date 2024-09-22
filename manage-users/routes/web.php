@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
@@ -51,6 +52,7 @@ Route::middleware(['authh'])->group(function () {
             Route::get('/categories/delete/{category}','delete')->name('category.delete');
             Route::delete('/categories/destroy/{category}','destroy')->name('category.destroy');
         });
+//        Route::resource('person',PersonController::class);
         Route::controller(TagController::class)->group(function () {
             Route::get('/tags','index')->name('tags.index');
             Route::get('/tags/create','create')->name('tag.create');
