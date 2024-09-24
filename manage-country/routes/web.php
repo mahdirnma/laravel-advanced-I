@@ -20,3 +20,4 @@ Route::get('/login', [UserConttroller::class, 'login'])->name('login.show');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [UserConttroller::class, 'register'])->name('register.show');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+//Route::get('/admin/country', [UserConttroller::class, 'index'])->name('dashboard')->middleware('auth');
