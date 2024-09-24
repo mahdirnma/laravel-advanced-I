@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\UserConttroller;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,6 @@ Route::get('/login', [UserConttroller::class, 'login'])->name('login.show');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [UserConttroller::class, 'register'])->name('register.show');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
-//Route::get('/admin/country', [UserConttroller::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/admin/country', [CountryController::class, 'index'])->name('country')->middleware('auth');
+Route::get('/admin/country/create', [CountryController::class, 'create'])->name('country.create')->middleware('auth');
+Route::post('/admin/country/store', [CountryController::class, 'store'])->name('country.store')->middleware('auth');

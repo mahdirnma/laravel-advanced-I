@@ -13,7 +13,8 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        $countries = Country::where('is_active', 1)->paginate(2);
+        return view('admin.country.index', compact('countries'));
     }
 
     /**
@@ -21,7 +22,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.country.create');
     }
 
     /**
@@ -29,7 +30,19 @@ class CountryController extends Controller
      */
     public function store(StoreCountryRequest $request)
     {
-        //
+        $name = $request->name;
+        $capital=$request->capital;
+        $population=$request->population;
+        $language=$request->language;
+        $country=Country::create([
+            'name'=>$name,
+            'capital'=>$capital,
+            'population'=>$population,
+            'language'=>$language,
+        ]);
+        if($country){
+            return to_route('country');
+        }
     }
 
     /**
