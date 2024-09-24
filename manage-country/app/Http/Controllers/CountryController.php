@@ -45,28 +45,29 @@ class CountryController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Country $country)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Country $country)
     {
-        //
+        return view('admin.country.edit', compact('country'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateCountryRequest $request, Country $country)
     {
-        //
+        $name = $request->name;
+        $capital=$request->capital;
+        $population=$request->population;
+        $language=$request->language;
+        $status=$country->update([
+            'name'=>$name,
+            'capital'=>$capital,
+            'population'=>$population,
+            'language'=>$language,
+        ]);
+        if($status){
+            return to_route('country');
+        }else{
+            return to_route('country.edit', $country);
+
+        }
     }
 
     /**

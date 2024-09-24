@@ -25,13 +25,13 @@
                     @foreach($countries as $country)
                         <tr>
                             <td class="text-center">
-                                <form action="{{--{{route('countries.delete',compact('category'))}}--}}" method="get">
+                                <form action="{{--{{route('country.delete',compact('country'))}}--}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-green-600">delete</button>
                                 </form>
                             </td>
                             <td class="text-center">
-                                <form action="{{--{{route('countries.update',compact('category'))}}--}}" method="get">
+                                <form action="{{route('country.edit',compact('country'))}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-cyan-600">update</button>
                                 </form>

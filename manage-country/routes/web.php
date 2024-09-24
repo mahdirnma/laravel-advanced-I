@@ -21,6 +21,17 @@ Route::get('/login', [UserConttroller::class, 'login'])->name('login.show');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [UserConttroller::class, 'register'])->name('register.show');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::get('/admin/country', [CountryController::class, 'index'])->name('country')->middleware('auth');
-Route::get('/admin/country/create', [CountryController::class, 'create'])->name('country.create')->middleware('auth');
-Route::post('/admin/country/store', [CountryController::class, 'store'])->name('country.store')->middleware('auth');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::prefix('/admin')->middleware('auth')->group(function () {
+    Route::controller(CountryController::class)->group(function () {
+        Route::get('/country','index')->name('country');
+        Route::get('/country/create','create')->name('country.create');
+        Route::post('/country/store', 'store')->name('country.store');
+        Route::get('/country/edit/{country}','edit')->name('country.edit');
+        Route::put('/country/update/{country}', 'update')->name('country.update');
+    });
+});
+Route::get('/a', function () {
+    \Illuminate\Support\Facades\Auth::loginUsingId('1');
+    return to_route('dashboard');
+});

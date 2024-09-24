@@ -29,9 +29,13 @@ class AuthController extends Controller
             $user=User::create([
                 'name'=>$name,
                 'username'=>$username,
-                'password'=>Hash::make($password),
+//                'password'=>Hash::make($password),
+//                'password'=>$password,
+                'password'=>bcrypt($password)
             ]);
             if($user){
+                Auth::login($user);
+                Auth::loginUsingId($user->id);
                 return to_route('dashboard');
             }else{
                 return to_route('register.show');
@@ -39,5 +43,11 @@ class AuthController extends Controller
         }else{
             return to_route('register.show');
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return to_route('login.show');
     }
 }

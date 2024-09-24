@@ -21,7 +21,10 @@
                 </ul>
             </nav>
         </div>
-{{--        <a href="{{route('logout')}}" class="text-red-700 font-bold"><- logout</a>--}}
+        <form action="{{route('logout')}}" method="post">
+            @csrf
+            <button type="submit" class="text-red-700 font-bold"><- logout</button>
+        </form>
     </div>
     @yield('content')
 </div>

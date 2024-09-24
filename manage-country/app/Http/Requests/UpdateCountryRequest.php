@@ -11,7 +11,7 @@ class UpdateCountryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateCountryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'capital' => 'required',
+            'population' => 'required|numeric',
+            'language' => 'required',
+
         ];
     }
 }
