@@ -8,12 +8,10 @@ use App\Http\Requests\UpdateCityRequest;
 
 class CityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $cities = City::where('is_active',1)->paginate(2);
+        return view('admin.city.index',compact('cities'));
     }
 
     /**

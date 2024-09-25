@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\UserConttroller;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,15 @@ Route::prefix('/admin')->middleware('auth')->group(function () {
         Route::put('/country/update/{country}', 'update')->name('country.update');
         Route::get('/country/delete/{country}','delete')->name('country.delete');
         Route::delete('/country/destroy/{country}', 'destroy')->name('country.destroy');
+    });
+    Route::controller(CityController::class)->group(function () {
+        Route::get('/city','index')->name('city');
+/*        Route::get('/city/create','create')->name('city.create');
+        Route::post('/city/store', 'store')->name('city.store');
+        Route::get('/city/edit/{city}','edit')->name('city.edit');
+        Route::put('/city/update/{city}', 'update')->name('city.update');
+        Route::get('/city/delete/{city}','delete')->name('city.delete');
+        Route::delete('/city/destroy/{city}', 'destroy')->name('city.destroy');*/
     });
 });
 /*Route::get('/a', function () {
