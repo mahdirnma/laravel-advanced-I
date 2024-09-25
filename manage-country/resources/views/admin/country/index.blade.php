@@ -25,7 +25,7 @@
                     @foreach($countries as $country)
                         <tr>
                             <td class="text-center">
-                                <form action="{{--{{route('country.delete',compact('country'))}}--}}" method="get">
+                                <form action="{{route('country.delete',compact('country'))}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-green-600">delete</button>
                                 </form>

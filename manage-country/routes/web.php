@@ -29,9 +29,11 @@ Route::prefix('/admin')->middleware('auth')->group(function () {
         Route::post('/country/store', 'store')->name('country.store');
         Route::get('/country/edit/{country}','edit')->name('country.edit');
         Route::put('/country/update/{country}', 'update')->name('country.update');
+        Route::get('/country/delete/{country}','delete')->name('country.delete');
+        Route::delete('/country/destroy/{country}', 'destroy')->name('country.destroy');
     });
 });
-Route::get('/a', function () {
+/*Route::get('/a', function () {
     \Illuminate\Support\Facades\Auth::loginUsingId('1');
     return to_route('dashboard');
-});
+});*/

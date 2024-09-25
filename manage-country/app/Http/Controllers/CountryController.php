@@ -70,11 +70,19 @@ class CountryController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function delete(Country $country)
+    {
+        return view('admin.country.delete', compact('country'));
+    }
     public function destroy(Country $country)
     {
-        //
+        $status=$country->update([
+            'is_active'=>0,
+        ]);
+        if($status){
+            return to_route('country');
+        }else{
+            return to_route('country.delete', $country);
+        }
     }
 }

@@ -35,7 +35,7 @@ class AuthController extends Controller
             ]);
             if($user){
                 Auth::login($user);
-                Auth::loginUsingId($user->id);
+//                Auth::loginUsingId($user->id);
                 return to_route('dashboard');
             }else{
                 return to_route('register.show');
