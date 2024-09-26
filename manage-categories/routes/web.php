@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/login', [UserController::class, 'login'])->name('login.show');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login')->middleware('checkRole:18,3');
+Route::get('/unauthorized', [UserController::class, 'unauthorized'])->name('unauthorized');
 
-Route::prefix('/admin')->/*middleware('auth')->*/group(function () {
+Route::prefix('/admin')->middleware('auth')->group(function () {
     Route::controller(CategoryController::class)->group(function () {
         Route::get('/category','index')->name('category');
         Route::get('/category/create','create')->name('category.create');

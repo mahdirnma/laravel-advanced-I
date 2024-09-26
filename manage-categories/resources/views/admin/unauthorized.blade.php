@@ -9,6 +9,6 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-<p class="text-red-600">you dont have access</p>
+<p class="text-red-600 text-center font-bold text-2xl mt-5">you dont have access</p>
 </body>
 </html>

@@ -12,4 +12,9 @@ class UserController extends Controller
     {
         return view('auth.login');
     }
+
+    public function unauthorized()
+    {
+        return view('admin.unauthorized');
+    }
 }

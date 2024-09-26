@@ -12,8 +12,9 @@ class AuthController extends Controller
     {
         $myData = $request->only('username', 'password');
         if (Auth::attempt($myData)) {
-            $user = Auth::user();
-            return $user->role;
+            return to_route('category');
+        }else{
+            return to_route('login.show');
         }
     }
 }
