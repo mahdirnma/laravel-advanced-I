@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/login', [UserController::class, 'login'])->name('login.show');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+
+Route::get('/admin/category', [CategoryController::class, 'index'])->name('category');
