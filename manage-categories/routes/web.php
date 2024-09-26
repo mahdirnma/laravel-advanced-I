@@ -19,5 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [UserController::class, 'login'])->name('login.show');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-
-Route::get('/admin/category', [CategoryController::class, 'index'])->name('category');
+Route::prefix('/admin')->/*middleware('auth')->*/group(function () {
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/category','index')->name('category');
+        Route::get('/category/create','create')->name('category.create');
+        Route::post('/category/post','store')->name('category.store');
+    });
+});

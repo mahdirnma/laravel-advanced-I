@@ -22,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -30,7 +30,15 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $title = $request->input('title');
+        $description = $request->input('description');
+        $category =Category::create([
+            'title' => $title,
+            'description' => $description
+        ]);
+        if($category){
+            return to_route('category');
+        }
     }
 
     /**
