@@ -24,5 +24,7 @@ Route::prefix('/admin')->/*middleware('auth')->*/group(function () {
         Route::get('/category','index')->name('category');
         Route::get('/category/create','create')->name('category.create');
         Route::post('/category/post','store')->name('category.store');
+        Route::get('/category/edit/{category}','edit')->name('category.edit');
+        Route::put('/category/update/{category}','update')->name('category.update');
     });
 });

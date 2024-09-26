@@ -38,6 +38,8 @@ class CategoryController extends Controller
         ]);
         if($category){
             return to_route('category');
+        }else{
+            return to_route('category.create');
         }
     }
 
@@ -54,7 +56,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -62,7 +64,17 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $title = $request->input('title');
+        $description = $request->input('description');
+        $status = $category->update([
+            'title' => $title,
+            'description' => $description
+        ]);
+        if($status){
+            return to_route('category');
+        }else{
+            return to_route('category.edit');
+        }
     }
 
     /**
