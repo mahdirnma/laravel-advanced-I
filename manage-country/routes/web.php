@@ -39,8 +39,8 @@ Route::prefix('/admin')->middleware('auth')->group(function () {
         Route::post('/city/store', 'store')->name('city.store');
         Route::get('/city/edit/{city}','edit')->name('city.edit');
         Route::put('/city/update/{city}', 'update')->name('city.update');
-//        Route::get('/city/delete/{city}','delete')->name('city.delete');
-//        Route::delete('/city/destroy/{city}', 'destroy')->name('city.destroy');
+        Route::get('/city/delete/{city}','delete')->name('city.delete');
+        Route::delete('/city/destroy/{city}', 'destroy')->name('city.destroy');
     });
 });
 /*Route::get('/a', function () {

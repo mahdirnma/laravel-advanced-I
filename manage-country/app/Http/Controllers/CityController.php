@@ -81,8 +81,19 @@ class CityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    public function delete(City $city)
+    {
+        return view('admin.city.delete',compact('city'));
+    }
     public function destroy(City $city)
     {
-        //
+        $status=$city->update([
+            'is_active'=>0
+        ]);
+        if($status){
+            return to_route('city');
+        }else{
+            return to_route('city.delete');
+        }
     }
 }
