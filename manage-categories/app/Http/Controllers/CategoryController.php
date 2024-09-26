@@ -80,8 +80,19 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    public function delete(Category $category)
+    {
+        return view('admin.category.delete', compact('category'));
+    }
     public function destroy(Category $category)
     {
-        //
+        $status = $category->update([
+            'is_active' => 0
+        ]);
+        if($status){
+            return to_route('category');
+        }else{
+            return to_route('category.delete');
+        }
     }
 }
