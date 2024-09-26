@@ -30,7 +30,7 @@
                                 </form>
                             </td>
                             <td class="text-center">
-                                <form action="{{--{{route('city.edit',compact('city'))}}--}}" method="get">
+                                <form action="{{route('city.edit',compact('city'))}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-cyan-600">update</button>
                                 </form>

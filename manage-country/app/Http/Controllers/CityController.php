@@ -44,9 +44,6 @@ class CityController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(City $city)
     {
         //
@@ -57,7 +54,8 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        //
+        $countries = Country::where('is_active',1)->get();
+        return view('admin.city.edit',compact('city','countries'));
     }
 
     /**
@@ -65,7 +63,19 @@ class CityController extends Controller
      */
     public function update(UpdateCityRequest $request, City $city)
     {
-        //
+        $name=$request->name;
+        $population=$request->population;
+        $country_id=$request->country;
+        $status=$city->update([
+            'name'=>$name,
+            'population'=>$population,
+            'country_id'=>$country_id
+        ]);
+        if($status){
+            return to_route('city');
+        }else{
+            return to_route('city.edit');
+        }
     }
 
     /**
