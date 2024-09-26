@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Http\Requests\StoreCityRequest;
 use App\Http\Requests\UpdateCityRequest;
+use App\Models\Country;
 
 class CityController extends Controller
 {
@@ -19,15 +20,28 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::where('is_active',1)->get();
+        return view('admin.city.create',compact('countries'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCityRequest $request)
+    public function store(StoreCityRequest $request, City $city)
     {
-        //
+        $name=$request->name;
+        $population=$request->population;
+        $country_id=$request->country;
+        $status=$city->create([
+            'name'=>$name,
+            'population'=>$population,
+            'country_id'=>$country_id
+        ]);
+        if($status){
+            return to_route('city');
+        }else{
+            return to_route('city.create');
+        }
     }
 
     /**

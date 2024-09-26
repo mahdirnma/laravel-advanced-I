@@ -35,12 +35,12 @@ Route::prefix('/admin')->middleware('auth')->group(function () {
     });
     Route::controller(CityController::class)->group(function () {
         Route::get('/city','index')->name('city');
-/*        Route::get('/city/create','create')->name('city.create');
+        Route::get('/city/create','create')->name('city.create');
         Route::post('/city/store', 'store')->name('city.store');
-        Route::get('/city/edit/{city}','edit')->name('city.edit');
-        Route::put('/city/update/{city}', 'update')->name('city.update');
-        Route::get('/city/delete/{city}','delete')->name('city.delete');
-        Route::delete('/city/destroy/{city}', 'destroy')->name('city.destroy');*/
+//        Route::get('/city/edit/{city}','edit')->name('city.edit');
+//        Route::put('/city/update/{city}', 'update')->name('city.update');
+//        Route::get('/city/delete/{city}','delete')->name('city.delete');
+//        Route::delete('/city/destroy/{city}', 'destroy')->name('city.destroy');
     });
 });
 /*Route::get('/a', function () {
