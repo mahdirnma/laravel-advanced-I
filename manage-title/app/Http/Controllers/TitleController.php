@@ -48,7 +48,6 @@ class TitleController extends Controller
      */
     public function show(Title $title)
     {
-        //
     }
 
     /**
@@ -56,7 +55,8 @@ class TitleController extends Controller
      */
     public function edit(Title $title)
     {
-        //
+        return view('admin.title.edit', compact('title'));
+
     }
 
     /**
@@ -64,7 +64,17 @@ class TitleController extends Controller
      */
     public function update(UpdateTitleRequest $request, Title $title)
     {
-        //
+        $value=$request->value;
+        $key=$request->key;
+        $status=$title->update([
+            'value'=>$value,
+            'key'=>$key
+        ]);
+        if($status){
+            return to_route('title.index');
+        }else{
+            return to_route('title.edit');
+        }
     }
 
     /**

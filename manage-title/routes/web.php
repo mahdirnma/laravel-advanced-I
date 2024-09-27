@@ -18,6 +18,8 @@ Route::prefix('/admin')->group(function () {
         Route::get('/title','index')->name('title.index');
         Route::get('/title/create','create')->name('title.create');
         Route::post('/title/store','store')->name('title.store');
+        Route::get('/title/edit/{title}','edit')->name('title.edit');
+        Route::put('/title/update/{title}','update')->name('title.update');
     });
 
 });

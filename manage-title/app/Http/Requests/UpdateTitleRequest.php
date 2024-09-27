@@ -11,7 +11,7 @@ class UpdateTitleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateTitleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'value'=>'required|string',
+            'key'=>'required|numeric',
         ];
     }
 }
