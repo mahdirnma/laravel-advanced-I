@@ -9,7 +9,17 @@
                 <a href="{{route('category.create')}}" class="px-10 py-3 rounded-xl font-light text-white bg-gray-800">add category +</a>
                 <h2 class="text-xl">category</h2>
             </div>
-            <div class="w-[90%] h-3/5 flex justify-between items-center">
+            <form action="" method="" class="py-5">
+                <input type="text" name="title" id="title" placeholder="enter title" class="border border-amber-500 py-2 px-5">
+                <input type="text" name="description" id="description" placeholder="enter description" class="border border-amber-500 py-2 px-5">
+                <select name="status" id="status" class="border border-amber-500 py-2 px-5">
+                    <option value="">all status</option>
+                    <option value="1">active</option>
+                    <option value="2">deactivate</option>
+                </select>
+                <input type="submit" value="Go" class="bg-amber-500 text-amber-50 py-2 px-5 cursor-pointer">
+            </form>
+            <div class="w-[90%] h-3/5 flex flex-col justify-center">
                 <table class="w-full min-h-full border border-gray-400">
                     <thead>
                     <tr class="h-12 border border-gray-400 border-b-2 border-b-gray-400">
@@ -41,6 +51,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="mt-5">{{$categories->links()}}</div>
+{{--            <div class="mt-5">{{$categories->links()}}</div>--}}
         </div>
 @endsection

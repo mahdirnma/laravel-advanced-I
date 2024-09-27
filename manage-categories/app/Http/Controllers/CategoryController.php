@@ -5,15 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::where('is_active', 1)->paginate(2);
+//        $categories = Category::where('is_active', 1)->paginate(2);
+        $categories=Category::where('description','like','%'.$request->description.'%');
+        if ($request->title)
+            $categories=$categories->where('title',$request->title);
+        if ($request->status){
+            $status=$request->status==2?0:1;
+            $categories=$categories->where('is_active',$status);
+        }
+        $categories=$categories->get();
         return view('admin.category.index', compact('categories'));
     }
 
