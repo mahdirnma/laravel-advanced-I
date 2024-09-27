@@ -5,15 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Title;
 use App\Http\Requests\StoreTitleRequest;
 use App\Http\Requests\UpdateTitleRequest;
+use Illuminate\Http\Request;
 
 class TitleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $titles = Title::where('is_active', 1)->paginate(2);
+//        $titles = Title::where('is_active', 1)->paginate(2);
+        $titles = Title::where('is_active', 1);
+        $titles = $titles->where('value','like','%'.$request->value.'%');
+        if ($request->key){
+            $titles = $titles->where('key',$request->key);
+        }
+        $titles = $titles->paginate(2);
         return view('admin.title.index', compact('titles'));
     }
 

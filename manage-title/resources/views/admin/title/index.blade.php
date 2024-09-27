@@ -9,18 +9,11 @@
                 <a href="{{route('title.create')}}" class="px-10 py-3 rounded-xl font-light text-white bg-gray-800">add title +</a>
                 <h2 class="text-xl">title</h2>
             </div>
-{{--
             <form action="" method="" class="py-5">
-                <input type="text" name="title" id="title" placeholder="enter title" class="border border-amber-500 py-2 px-5">
-                <input type="text" name="description" id="description" placeholder="enter description" class="border border-amber-500 py-2 px-5">
-                <select name="status" id="status" class="border border-amber-500 py-2 px-5">
-                    <option value="">all status</option>
-                    <option value="1">active</option>
-                    <option value="2">deactivate</option>
-                </select>
-                <input type="submit" value="Go" class="bg-amber-500 text-amber-50 py-2 px-5 cursor-pointer">
+                <input type="text" name="value" id="value" placeholder="enter value" class="border border-amber-500 py-2 px-5">
+                <input type="number" name="key" id="key" placeholder="enter key" class="border border-amber-500 py-2 px-5">
+                <input type="submit" value="Search" class="bg-amber-500 text-amber-50 py-2 px-5 cursor-pointer">
             </form>
---}}
             <div class="w-[90%] h-3/5 flex flex-col justify-center">
                 <table class="w-full min-h-full border border-gray-400">
                     <thead>
