@@ -80,8 +80,19 @@ class TitleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    public function delete(Title $title)
+    {
+        return view('admin.title.delete', compact('title'));
+    }
     public function destroy(Title $title)
     {
-        //
+        $status=$title->update([
+            'is_active'=>0
+        ]);
+        if ($status) {
+            return to_route('title.index');
+        }else{
+            return to_route('title.delete');
+        }
     }
 }

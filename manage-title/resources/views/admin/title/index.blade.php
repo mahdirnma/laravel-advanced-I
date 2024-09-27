@@ -35,7 +35,7 @@
                     @foreach($titles as $title)
                         <tr>
                             <td class="text-center">
-                                <form action="{{--{{route('title.delete',compact('title'))}}--}}" method="get">
+                                <form action="{{route('title.delete',compact('title'))}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-green-600">delete</button>
                                 </form>

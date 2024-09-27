@@ -20,6 +20,8 @@ Route::prefix('/admin')->group(function () {
         Route::post('/title/store','store')->name('title.store');
         Route::get('/title/edit/{title}','edit')->name('title.edit');
         Route::put('/title/update/{title}','update')->name('title.update');
+        Route::get('/title/delete/{title}','delete')->name('title.delete');
+        Route::delete('/title/destroy/{title}','destroy')->name('title.destroy');
     });
 
 });
