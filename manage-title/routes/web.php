@@ -26,9 +26,11 @@ Route::prefix('/admin')->middleware('auth')->group(function () {
         Route::get('/title','index')->name('title.index');
         Route::get('/title/create','create')->name('title.create');
         Route::post('/title/store','store')->name('title.store');
-        Route::get('/title/edit/{title}','edit')->name('title.edit');
-        Route::put('/title/update/{title}','update')->name('title.update');
-        Route::get('/title/delete/{title}','delete')->name('title.delete');
-        Route::delete('/title/destroy/{title}','destroy')->name('title.destroy');
+        Route::middleware('checkRole')->group(function () {
+            Route::get('/title/edit/{title}','edit')->name('title.edit');
+            Route::put('/title/update/{title}','update')->name('title.update');
+            Route::get('/title/delete/{title}','delete')->name('title.delete');
+            Route::delete('/title/destroy/{title}','destroy')->name('title.destroy');
+        });
     });
 });
