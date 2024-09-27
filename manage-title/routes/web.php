@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TitleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +15,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::prefix('/admin')->group(function () {
+Route::get('/login', [UserController::class, 'login'])->name('login.show');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/register', [UserController::class, 'register'])->name('register.show');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::prefix('/admin')->middleware('auth')->group(function () {
     Route::controller(TitleController::class)->group(function () {
         Route::get('/title','index')->name('title.index');
         Route::get('/title/create','create')->name('title.create');
@@ -23,5 +30,4 @@ Route::prefix('/admin')->group(function () {
         Route::get('/title/delete/{title}','delete')->name('title.delete');
         Route::delete('/title/destroy/{title}','destroy')->name('title.destroy');
     });
-
 });
