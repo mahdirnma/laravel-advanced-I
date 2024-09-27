@@ -22,7 +22,7 @@ class TitleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.title.create');
     }
 
     /**
@@ -30,7 +30,17 @@ class TitleController extends Controller
      */
     public function store(StoreTitleRequest $request)
     {
-        //
+        $value=$request->value;
+        $key=$request->key;
+        $title=Title::create([
+            'value'=>$value,
+            'key'=>$key
+        ]);
+        if($title){
+            return to_route('title.index');
+        }else{
+            return to_route('title.create');
+        }
     }
 
     /**

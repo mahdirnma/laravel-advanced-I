@@ -13,4 +13,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/admin/title', [TitleController::class, 'index'])->name('title.index');
+Route::prefix('/admin')->group(function () {
+    Route::controller(TitleController::class)->group(function () {
+        Route::get('/title','index')->name('title.index');
+        Route::get('/title/create','create')->name('title.create');
+        Route::post('/title/store','store')->name('title.store');
+    });
+
+});
