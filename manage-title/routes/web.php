@@ -20,7 +20,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [UserController::class, 'register'])->name('register.show');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
 Route::prefix('/admin')->middleware('auth')->group(function () {
     Route::controller(TitleController::class)->group(function () {
         Route::get('/title','index')->name('title.index');
@@ -34,3 +33,4 @@ Route::prefix('/admin')->middleware('auth')->group(function () {
         });
     });
 });
+Route::redirect('/','/login');

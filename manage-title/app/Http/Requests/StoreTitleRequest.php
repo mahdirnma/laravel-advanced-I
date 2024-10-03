@@ -22,8 +22,8 @@ class StoreTitleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'value'=>'required|string',
-            'key'=>'required|numeric',
+            'value'=>'required|string|min:3',
+            'key'=>'required|numeric|min:20',
         ];
     }
 }

@@ -37,12 +37,13 @@ class TitleController extends Controller
      */
     public function store(StoreTitleRequest $request)
     {
-        $value=$request->value;
+        $title= Title::create($request->validated());
+/*        $value=$request->value;
         $key=$request->key;
         $title=Title::create([
             'value'=>$value,
             'key'=>$key
-        ]);
+        ]);*/
         if($title){
             return to_route('title.index');
         }else{
