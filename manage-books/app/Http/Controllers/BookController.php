@@ -13,7 +13,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::where('is_active',1)->paginate(2);
+        return view('admin.book.index',compact('books'));
     }
 
     /**

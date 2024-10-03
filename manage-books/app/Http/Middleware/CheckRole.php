@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckRole
@@ -15,6 +16,10 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $role=Auth::user()->role;
+        if ($role=="1"){
+            return 1223;
+        }
         return $next($request);
     }
 }
