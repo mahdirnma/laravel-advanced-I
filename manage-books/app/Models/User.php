@@ -21,7 +21,19 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'is_active',
     ];
+
+    public function books_owner()
+    {
+        return $this->hasMany(Book::class);
+    }
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
