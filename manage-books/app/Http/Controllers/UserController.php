@@ -15,4 +15,9 @@ class UserController extends Controller
     public function register(){
         return view('auth.register');
     }
+
+    public function rent()
+    {
+        return view('admin.rent.index');
+    }
 }

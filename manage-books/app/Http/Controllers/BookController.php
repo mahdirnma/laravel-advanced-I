@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use App\Models\User;
 
 class BookController extends Controller
 {
@@ -22,7 +23,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $users=User::where('is_active',1)->where('role','>',1)->get();
+        return view('admin.book.create',compact('users'));
     }
 
     /**
@@ -30,7 +32,12 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        //
+        $book=Book::create($request->validated());
+        if ($book) {
+            return to_route('books.index');
+        }else{
+            return to_route('books.create');
+        }
     }
 
     /**

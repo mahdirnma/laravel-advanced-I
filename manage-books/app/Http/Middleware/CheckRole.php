@@ -16,9 +16,13 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $role=Auth::user()->role;
+        if (Auth::check()) {
+            $role=Auth::user()->role;
+        }else{
+            return to_route('login');
+        }
         if ($role=="1"){
-            return 1223;
+            return to_route('rent.show');
         }
         return $next($request);
     }
