@@ -53,7 +53,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        $users=User::where('is_active',1)->where('role','>',1)->get();
+        return view('admin.book.edit',compact('book','users'));
     }
 
     /**
@@ -61,7 +62,22 @@ class BookController extends Controller
      */
     public function update(UpdateBookRequest $request, Book $book)
     {
-        //
+        $status=$book->update($request->validated());
+/*        $title=$request->title;
+        $description=$request->description;
+        $publication_year=$request->publication_year;
+        $user_id=$request->user_id;
+        $status=$book->update([
+            'title'=>$title,
+            'description'=>$description,
+            'publication_year'=>$publication_year,
+            'user_id'=>$user_id
+        ]);*/
+        if ($status) {
+            return to_route('books.index');
+        }else{
+            return to_route('books.edit',$book);
+        }
     }
 
     /**
