@@ -13,7 +13,8 @@ class Book extends Model
         'description',
         'publication_year',
         'user_id',
-        'is_active'
+        'is_active',
+        'is_rented',
     ];
     public function user(){
         return $this->belongsTo(User::class);

@@ -25,4 +25,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('books', BookController::class)->except(['show'])->middleware(['auth'])->middleware('checkRole');
 
 
-Route::get('/rent', [UserController::class, 'rent'])->name('rent.show');
+Route::get('/rent', [UserController::class, 'rent_show'])->name('rent.show');
+Route::post('/rent/{book}', [UserController::class, 'rent'])->name('rent');
+Route::get('/user/panel', [UserController::class, 'user_panel'])->name('user.panel');
