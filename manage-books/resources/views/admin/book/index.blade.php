@@ -25,8 +25,9 @@
                     @foreach($books as $book)
                         <tr>
                             <td class="text-center">
-                                <form action="{{route('books.destroy',compact('book'))}}" method="get">
+                                <form action="{{route('books.destroy',compact('book'))}}" method="post">
                                     @csrf
+                                    @method('delete')
                                     <button type="submit" class="text-green-600">delete</button>
                                 </form>
                             </td>

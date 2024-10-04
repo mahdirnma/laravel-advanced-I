@@ -85,6 +85,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->update(['is_active'=>0]);
+        return to_route('books.index');
     }
 }
